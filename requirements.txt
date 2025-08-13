@@ -1,0 +1,9 @@
+flask
+torch
+opencv-python
+ultralytics
+seaborn
+requests
+qrcode[pil]
+python-dotenv
+pay

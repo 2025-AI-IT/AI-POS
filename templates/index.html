@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>스마트 포스기</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="video-area">
+      <img src="{{ url_for('video_feed') }}" alt="Webcam" />
+      
+    </div>
+
+    <div class="info-area">
+      <div>
+        <h2>🛒 구매 항목</h2>
+        <div class="item-list" id="item-list"></div>
+        <div class="total-row">
+          <span>Total</span>
+          <span id="total-price">₩0</span>
+        </div>
+      </div>
+      
+      <button id="pay-btn" class="pay-button">결제하기</button>
+    </div>
+  </div>
+
+  <div id="qrModal" class="kp-modal hidden">
+    <div class="kp-popup">
+      <div class="kp-header">
+        <span class="kp-logo">pay</span>
+        <button class="kp-close" onclick="closeKP()">×</button>
+      </div>
+
+      <div class="kp-body">
+        <div class="kp-tab">
+          <span class="on">QR결제</span>
+          <span>카톡결제</span>
+        </div>
+
+        <p class="kp-title">
+          휴대폰으로 스캔하면<br />결제 화면으로 이동합니다.
+        </p>
+
+        <img id="qrImg" class="kp-qr" alt="카카오페이 QR"/>
+      </div>
+    </div>
+  </div>
+
+  <div id="mismatchModal" class="modal hidden">
+    <div class="modal-card">
+      <h3>무게가 일치하지 않습니다</h3>
+      <p class="dim">물건이 서로 겹치지 않게 재배치해 주세요.</p>
+      <div class="nums">
+        <div><span>예상</span><b id="mm-expected">0 g</b></div>
+        <div><span>실측</span><b id="mm-real">0 g</b></div>
+        <div><span>차이</span><b id="mm-diff">0 g</b></div>
+      </div>
+      <div class="actions">
+        <button id="mm-close" class="btn">닫기</button>
+        <button id="mm-retry" class="btn primary">다시 측정</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="infoModal" class="modal hidden">
+    <div class="modal-card">
+      <p id="infoMsg">메시지</p>
+      <div class="actions">
+        <button id="infoClose" class="btn primary">확인</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function closeKP(){
+      document.getElementById('qrModal').classList.add('hidden');
+    }
+  </script>
+  <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>
